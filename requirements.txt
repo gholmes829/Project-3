@@ -1,0 +1,18 @@
+Project 3 Requirements:
+	- Demo
+
+	- Requirements engineering artifact (Use Case Diagram?) that documents and describes features
+
+	- Person hours estimates with details of calculation (e.g. LOC, agile)
+
+	- Record hours each person worked each day including meetings (Google Sheets)
+
+	- Choose design paradigm and explain why you chose it (component or data structure?) (300 words)
+
+	- Describe software architecture of prototype (300 words)
+
+	- Create and use one or more UML modeling diagrams to design
+
+	- Identify design patterns used in design and explain how applied (300 words)
+
+	- On repository, have documentation folder
