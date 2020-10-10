@@ -1,4 +1,4 @@
-Project 3 Requirements:
+Project 3 Requirements (due October 25):
 	Front end: Fares, Luke B
 	Full stack: Luke S
 	Back end: Peyton, Grant
