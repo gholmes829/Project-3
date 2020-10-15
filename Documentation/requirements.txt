@@ -26,5 +26,5 @@ Project 3 Requirements (due October 25):
 Luke S: Wrapper
 Fares: Front end, requirements engineering artifact (use case diagram)
 Luke B: Front end
-Peyton: 300 words design patterns, person hour estimates with details of calculation, 300 words design paradigm
-Grant: One or UML modeling diagrams, 300 words software architecture, 300 words design paradigm
+Peyton: 300 words design patterns (adapter etc), person hour estimates with details of calculation, 300 words design paradigm
+Grant: UML modeling diagrams (structure and maybe state), 300 words software architecture, 300 words design paradigm
