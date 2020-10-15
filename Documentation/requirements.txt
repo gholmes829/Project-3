@@ -13,9 +13,9 @@ Project 3 Requirements (due October 25):
 
 	- Record hours each person worked each day including meetings, Google Sheets
 
-	- Choose design paradigm and explain why you chose it (component or data structure?), 300 words	(Peyton and Grant)
+	- Choose design paradigm and explain why you chose it (component oriented), 300 words	(Peyton and Grant)
 
-	- Describe software architecture of prototype, 300 words	(Grant)
+	- Describe software architecture of prototype (3 tier), 300 words	(Grant)
 
 	- Create and use one or more UML modeling diagrams to design	(Grant)
 
