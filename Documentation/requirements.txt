@@ -1,0 +1,30 @@
+Project 3 Requirements (due October 25):
+	Front end: Fares, Luke B
+	Full stack: Luke S
+	Back end: Peyton, Grant
+	
+	- Demo	(Luke S, Luke B, Fares)
+		Screen
+		Basic functionality (link, authenticate, select playlist, user interactions)
+
+	- Requirements engineering artifact (Use Case Diagram) that documents and describes features	(Fares)
+
+	- Person hours estimates for prototype with details of calculation used (e.g. LOC, agile)	(Peyton)
+
+	- Record hours each person worked each day including meetings, Google Sheets
+
+	- Choose design paradigm and explain why you chose it (component or data structure?), 300 words	(Peyton and Grant)
+
+	- Describe software architecture of prototype, 300 words	(Grant)
+
+	- Create and use one or more UML modeling diagrams to design	(Grant)
+
+	- Identify design patterns used in design and explain how applied, 300 words	(Peyton)
+
+	- On repository, have documentation folder
+	
+Luke S: Wrapper
+Fares: Front end, requirements engineering artifact (use case diagram)
+Luke B: Front end
+Peyton: 300 words design patterns, person hour estimates with details of calculation, 300 words design paradigm
+Grant: One or UML modeling diagrams, 300 words software architecture, 300 words design paradigm

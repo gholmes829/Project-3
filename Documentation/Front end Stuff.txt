@@ -1,0 +1,29 @@
+Things to do --
+Container (visiual)-- Fares
+	Playlist being edit section
+		Getting the playlist from wrapper
+		Displaying
+		Having functions that allow you to get certain songs
+	Songs Removed - Fares
+		Needs to get a specific song from the playlist being edited
+		needs to remove said song
+	Add Song -- Luke B
+		Needs to get a specific song not on the playlist
+		needs to add said song to the playlist
+	Buttons to finish -Luke S
+		Needs to create a new playlist on spotify of the playlist being edited
+		Sends playlist to spotify
+	Bar/button to determine how far out of range -Fares/Luke B
+		Needs to update global varibles for range
+		Needs to call backend to determine which songs are out of range
+		You'll have to do javascript to python calls
+
+Select playlist to edit - Luke B
+	Gets all of users playlists
+	Drop down/slider menu to select a playlist
+	make selected playlist the playlist being edited
+Play song -- Fares
+	Play the song being sent from playlist being edited
+Profile -- Luke S
+	Display profile information
+Wrapper - Luke S
