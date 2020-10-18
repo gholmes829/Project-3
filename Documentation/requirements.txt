@@ -13,9 +13,9 @@ Project 3 Requirements (due October 25):
 
 	- Record hours each person worked each day including meetings, Google Sheets
 
-	- Choose design paradigm and explain why you chose it (component or data structure?), 300 words	(Peyton and Grant)
+	- Choose design paradigm and explain why you chose it (component oriented), 300 words	(Peyton and Grant)
 
-	- Describe software architecture of prototype, 300 words	(Grant)
+	- Describe software architecture of prototype (3 tier), 300 words	(Grant)
 
 	- Create and use one or more UML modeling diagrams to design	(Grant)
 
@@ -26,5 +26,5 @@ Project 3 Requirements (due October 25):
 Luke S: Wrapper
 Fares: Front end, requirements engineering artifact (use case diagram)
 Luke B: Front end
-Peyton: 300 words design patterns, person hour estimates with details of calculation, 300 words design paradigm
-Grant: One or UML modeling diagrams, 300 words software architecture, 300 words design paradigm
+Peyton: 300 words design patterns (adapter etc), person hour estimates with details of calculation, 300 words design paradigm
+Grant: UML modeling diagrams (structure and maybe state), 300 words software architecture, 300 words design paradigm
