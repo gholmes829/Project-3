@@ -1,7 +1,7 @@
 
 var spotifyApi = new SpotifyWebApi();
 
-spotifyApi.setAccessToken('BQCJzJ5jT30uDzMg9qIgTJsRSJG0B5z1el6LMex0hpxvbbZlUuK7w4ntsCR5uhy7pq4p_5Aw5QZh9IGvhPfwZ3CSB6qz7bXD7o6AxQ9PaNItDrPxPYKxsYQVjDG13s72yokUfQSoGm0ZWiUwAyT8P_MD2zldjtmkruyarGdP8MbUJyMefjK2l9YL-Vdn');
+spotifyApi.setAccessToken('BQD7ii0zA-xIE7Kjcbjzy-53mAauhYswgk25duWRY4ogFT7baEqsCbQEyP0mECkEhtLE1pG1zBuqKeOFks44OJNI1PRCe4s-wcU_kox7FDh7sJO5oQSNgJUZNSWC0Ug3adIs-_3qscs3owKjLx1dh2sNKGG4_5qAf621LpBfBnVetq2Pv6qNiX2B6FEt');
 
 /**
 This is an example of the JMperez spotify web api
