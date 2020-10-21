@@ -1,7 +1,7 @@
 var spotifyApi = new SpotifyWebApi();
 
 
-spotifyApi.setAccessToken("BQDCCygYr3ZGajK8qu5eHAMWkonf4pPhIh-syXIHKCTldlbxTwmQyDzbCXv5lNPV5qP5QF1pBQaPIO-al8a2nn4hN_DwmxAXgk0APDiqYrMRrTaOEPcLcE3_z7TYyJ-bv701G7HUju-DxNPdTg13RY7MuVAGcp2UW_z_3oVO7a8i-n9sZEAorTsXT2KG")
+spotifyApi.setAccessToken("BQAavSmYHHCsB43ljkmSSganYoop45kFCZS7guLX9yDwakUyFHjtr3pXLYx8fSKFfZrvw_HtIEvpa3_dqSRa8KSEfoZTpGGhPcHOr8VD7vhm3DD9n6x_bUe5x9RGFCiTgG0-gMnBoXouv56TJSfiZFR7i-n-MVhUB5bOQZvQtIqxn2U31-7hfxn1y-Mg")
 
 document.addEventListener("DOMContentLoaded", function(event) {
     const list = new FrontEnd("#container")
