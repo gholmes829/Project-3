@@ -1,0 +1,17 @@
+#container{
+    border: 10px ridge #f00;
+    background-color: #ff0;
+    padding: .5rem;
+    width: 50%;
+    float: right;
+    margin-right: 100px;
+}
+.row
+{
+    background-color: white;
+    border: 10px ridge #f00;
+    margin: 5;
+    width: 100px;
+    height: 100;
+    display: inline-block;
+}
