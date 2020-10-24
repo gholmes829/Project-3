@@ -13,9 +13,6 @@ else {
   });
 }
 
-
-
-
 document.addEventListener("DOMContentLoaded", function(event) {
     const list = new FrontEnd("#container")
   });
