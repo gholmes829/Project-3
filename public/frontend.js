@@ -51,12 +51,13 @@ class FrontEnd
             function (data) {
                 for (let i = 0; i<data.items.length;i++)
                 {
-                    var newButton = document.createElement("button");
+                    let newButton = document.createElement("button");
                     var node = document.createTextNode(data.items[i].name);
                     
                     newButton.appendChild(node);
                     var element = document.getElementById("playList");
-                    newButton.onclick = function(){myFunction(data.items[i].id)};
+                    newButton.onclick = function(){showTracks(data.items[i].id);
+                    console.log("clicked")};
                     element.appendChild(newButton);
                     
                 }
@@ -70,7 +71,7 @@ class FrontEnd
      * 
      * @param {string} oldDataId id of the playlist selected
      */
-    function myFunction(oldDataId){
+    function showTracks(oldDataId){
       document.getElementById("playList").style.display = "none";
       console.log(oldDataId);
       spotifyApi.getPlaylistTracks(oldDataId).then(
@@ -79,11 +80,11 @@ class FrontEnd
           for (let i = 0; i<data.items.length;i++)
           {
               var newButton = document.createElement("button");
-              var node = document.createTextNode(data.items[i].name);
+              var node = document.createTextNode(data.items[i].track.name);
               
               newButton.appendChild(node);
               var element = document.getElementById("trackList");
-              newButton.onclick = function(){myFunction(data.items[i].id)};
+              newButton.onclick = function(){console.log(data)};
               element.appendChild(newButton);
               
           }
