@@ -1,11 +1,26 @@
 var spotifyApi = new SpotifyWebApi();
 
+let html_access_token = document.getElementById("access");
+if(html_access_token.innerHTML.length > 0)
+{
+  spotifyApi.setAccessToken(html_access_token.innerHTML);
+  console.log(spotifyApi.getAccessToken());
+}
+else {
+  html_access_token.addEventListener('change', (event) => {
+    spotifyApi.setAccessToken(html_access_token.innerHTML);
+    console.log(spotifyApi.getAccessToken());
+  });
+}
 
-spotifyApi.setAccessToken("BQDCCygYr3ZGajK8qu5eHAMWkonf4pPhIh-syXIHKCTldlbxTwmQyDzbCXv5lNPV5qP5QF1pBQaPIO-al8a2nn4hN_DwmxAXgk0APDiqYrMRrTaOEPcLcE3_z7TYyJ-bv701G7HUju-DxNPdTg13RY7MuVAGcp2UW_z_3oVO7a8i-n9sZEAorTsXT2KG")
+
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
     const list = new FrontEnd("#container")
   });
+
+
 class FrontEnd
 {
     constructor(list)
@@ -27,4 +42,15 @@ class FrontEnd
             }
         }
     }
+
 }
+
+spotifyApi.getMe(null).then(
+  function(data){
+    console.log(data.id);
+
+  },
+  function(err){
+    console.log(err);
+  }
+);
