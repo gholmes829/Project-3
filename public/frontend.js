@@ -25,53 +25,59 @@ class FrontEnd
         this.list
         this.createContainer()
     }
+
     createContainer()
     {
-      spotifyApi.getMe(null).then(
-        function (data) {
-            callGetUserPlayerList(data)
-        },
-        function (err) {
-            console.error(err);
-        }
-        );
-    function callGetUserPlayerList(oldData)
-    {
-        
-        spotifyApi.getUserPlaylists(oldData.id).then(
-            function (data) {
-                for (let i = 0; i<data.items.length;i++)
-                {
-                    var newButton = document.createElement("button");
-                    var node = document.createTextNode(data.items[i].name);
-                    
-                    newButton.appendChild(node);
-                    var element = document.getElementById("container");
-                    newButton.onclick = function(){myFunction(data.items[i].id)};
-                    element.appendChild(newButton);
-                    
-                }
-            },
-            function (err) {
+        spotifyApi.getMe(null).then(
+          function (data) {
+              updateUser(data);
+              callGetUserPlayerList(data)
+          },
+          function (err) {
               console.error(err);
-            }
-          );
-    }
-    function myFunction(oldDataId){
-      document.getElementById("container").style.display = "none";
-      console.log(oldDataId);
-      spotifyApi.getPlaylistTracks(oldDataId).then(
-        function (data) {
-        console.log(data);
-    },
-    function (err) {
-        console.error(err);
-    }
-    );
-    }
-<<<<<<< HEAD
+          });
 
-=======
+      function callGetUserPlayerList(oldData)
+      {
+
+          spotifyApi.getUserPlaylists(oldData.id).then(
+              function (data) {
+                  for (let i = 0; i<data.items.length;i++)
+                  {
+                      var newButton = document.createElement("button");
+                      var node = document.createTextNode(data.items[i].name);
+
+                      newButton.appendChild(node);
+                      var element = document.getElementById("container");
+                      newButton.onclick = function(){myFunction(data.items[i].id)};
+                      element.appendChild(newButton);
+
+                  }
+              },
+              function (err) {
+                console.error(err);
+              }
+            );
+      }
+
+      function myFunction(oldDataId){
+        document.getElementById("container").style.display = "none";
+        console.log(oldDataId);
+        spotifyApi.getPlaylistTracks(oldDataId).then(
+          function (data) {
+          console.log(data);
+          },
+          function (err) {
+              console.error(err);
+          });
+      }
+
+      function updateUser(data)
+      {
+        document.getElementById("profile-userName").innerHTML = "Username: " + data.display_name;
+        document.getElementById("profile-userID").innerHTML = "userID: " + data.id;
+        document.getElementById("profile-pic").src = data.images[0].url;
+      }
   }
->>>>>>> fb5307e776969a5e11a67ae390a37a0cb288e702
+
 }

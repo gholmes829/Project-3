@@ -15,3 +15,49 @@
     height: 100;
     display: inline-block;
 }
+
+.background{
+  background-color: rgb(20,20,20);
+}
+
+.profile-container {
+  width:20%;
+  height:60%;
+  background-color: rgb(255,255,255);
+  margin-top:0;
+  outline:solid;
+  position: absolute;
+}
+
+.loginButton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position:relative;
+  top: 100px;
+  border-radius: 20px;
+}
+
+.profile-picture{
+  left:6%;
+  top: 20px;
+  width: 200px;
+  height: 200px;
+  overflow:hidden;
+  border: 2px solid black;
+  position:relative;
+  border-radius: 100px;
+}
+
+.profile-displayText{
+  top: 40px;
+  padding: 10px;
+  position:relative;
+}
