@@ -41,13 +41,3 @@ class FrontEnd
     }
 
 }
-
-spotifyApi.getMe(null).then(
-  function(data){
-    console.log(data.id);
-
-  },
-  function(err){
-    console.log(err);
-  }
-);
