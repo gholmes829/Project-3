@@ -6,18 +6,21 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
 
-  <body>
+  <body class = "background">
     <script src ="spotify-web-api-js/src/spotify-web-api.js"> </script>
 
-
-    <div class="container">
-      <div id="login">
-        <h1>Temporary Login button</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+    <div class = "profile-container">
+      <div class="container">
+        <img id = "profile-pic"  class = "profile-picture"> </img>
+        <h3 id = "profile-userName" class = "profile-displayText">Username: </h3>
+        <h3 id = "profile-userID" class = "profile-displayText">userId: </h3>
+        <div id="login">
+          <a href="/login" class = "loginButton">Log in with Spotify</a>
+        </div>
       </div>
     </div>
 
-    <h2 id = "access" style = "visibility:hidden"></h2>
+    <h2 id = "access" style = "visibility:hidden;position:relative"></h2>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -72,6 +75,7 @@
       <div id = "playList"></div>
       <div id = "trackList"></div>
     <script src = "frontend.js"> </script>
+
     </div>
 
   </body>

@@ -33,10 +33,11 @@ class FrontEnd
        */
       spotifyApi.getMe(null).then(
         function (data) {
-            callGetUserPlayerList(data)
+          updateUser(data);
+          callGetUserPlayerList(data)
         },
         function (err) {
-            console.error(err);
+          console.error(err);
         }
         );
         /**
@@ -93,5 +94,14 @@ class FrontEnd
     }
     );
     }
+    function updateUser(data)
+    {
+      document.getElementById("profile-userName").innerHTML = "Username: " + data.display_name;
+      document.getElementById("profile-userID").innerHTML = "userID: " + data.id;
+      document.getElementById("profile-pic").src = data.images[0].url;
+    }
+    
+      
   }
+
 }
