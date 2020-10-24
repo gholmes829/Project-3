@@ -25,7 +25,7 @@ class FrontEnd
     this.list
     this.createContainer()
   }
-    
+
   createContainer()
   {
     /**
@@ -45,7 +45,7 @@ class FrontEnd
      */
     function callGetUserPlayerList(oldData)
     {
-        
+
       spotifyApi.getUserPlaylists(oldData.id).then(
         function (data) {
           document.getElementById("header").innerHTML = "Choose a Playlist to be Edited";
@@ -59,7 +59,7 @@ class FrontEnd
               newButton.onclick = function(){showTracks(data.items[i].id);
               console.log("clicked")};
               element.appendChild(newButton);
-              
+
           }
         },
         function (err) {
@@ -81,14 +81,14 @@ class FrontEnd
           {
               var newButton = document.createElement("button");
               var node = document.createTextNode(data.items[i].track.name);
-              
+
               newButton.appendChild(node);
               var element = document.getElementById("trackList");
               newButton.onclick = function(){console.log(data)};
               element.appendChild(newButton);
-              
+
           }
-        
+
         },
         function (err) {
           console.error(err);
@@ -98,7 +98,7 @@ class FrontEnd
     function updateUser(data)
     {
       document.getElementById("profile-userName").innerHTML = "Username: " + data.display_name;
-      document.getElementById("profile-userID").innerHTML = "userID: " + data.id;
+      document.getElementById("profile-userID").innerHTML = ("userID: " + data.id);
       document.getElementById("profile-pic").src = data.images[0].url;
     }
   }
