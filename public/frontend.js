@@ -20,55 +20,55 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 class FrontEnd
 {
-    constructor(list)
-    {
-        this.list
-        this.createContainer()
-    }
+  constructor(list)
+  {
+    this.list
+    this.createContainer()
+  }
     
-    createContainer()
+  createContainer()
+  {
+    /**
+      * Find the userId of the user and call a function that gets the users playlist if promise is fulfilled.
+      */
+    spotifyApi.getMe(null).then(
+      function (data) {
+        updateUser(data);
+        callGetUserPlayerList(data)
+      },
+      function (err) {
+        console.error(err);
+      });
+    /**
+     * makes playlists into button options and calls a function that gets tracks in playlist
+     * @param {object} oldData data of all the user playlists
+     */
+    function callGetUserPlayerList(oldData)
     {
-      /**
-       * Find the userId of the user and call a function that gets the users playlist if promise is fulfilled.
-       */
-      spotifyApi.getMe(null).then(
+        
+      spotifyApi.getUserPlaylists(oldData.id).then(
         function (data) {
-          updateUser(data);
-          callGetUserPlayerList(data)
+          document.getElementById("header").innerHTML = "Choose a Playlist to be Edited";
+
+          for (let i = 0; i<data.items.length;i++)
+          {
+              let newButton = document.createElement("button");
+              var node = document.createTextNode(data.items[i].name);
+              newButton.appendChild(node);
+              var element = document.getElementById("playList");
+              newButton.onclick = function(){showTracks(data.items[i].id);
+              console.log("clicked")};
+              element.appendChild(newButton);
+              
+          }
         },
         function (err) {
           console.error(err);
         }
-        );
-        /**
-         * makes playlists into button options and calls a function that gets tracks in playlist
-         * @param {object} oldData data of all the user playlists
-         */
-    function callGetUserPlayerList(oldData)
-    {
-        
-        spotifyApi.getUserPlaylists(oldData.id).then(
-            function (data) {
-                for (let i = 0; i<data.items.length;i++)
-                {
-                    let newButton = document.createElement("button");
-                    var node = document.createTextNode(data.items[i].name);
-                    
-                    newButton.appendChild(node);
-                    var element = document.getElementById("playList");
-                    newButton.onclick = function(){showTracks(data.items[i].id);
-                    console.log("clicked")};
-                    element.appendChild(newButton);
-                    
-                }
-            },
-            function (err) {
-              console.error(err);
-            }
-          );
+      );
     }
     /**
-     * 
+     * displays track names after being edited
      * @param {string} oldDataId id of the playlist selected
      */
     function showTracks(oldDataId){
@@ -76,7 +76,7 @@ class FrontEnd
       console.log(oldDataId);
       spotifyApi.getPlaylistTracks(oldDataId).then(
         function (data) {
-          console.log(data);
+          document.getElementById("header").innerHTML = "Choose a Track to play";
           for (let i = 0; i<data.items.length;i++)
           {
               var newButton = document.createElement("button");
@@ -89,11 +89,11 @@ class FrontEnd
               
           }
         
-    },
-    function (err) {
-        console.error(err);
-    }
-    );
+        },
+        function (err) {
+          console.error(err);
+        }
+      );
     }
     function updateUser(data)
     {
@@ -101,8 +101,6 @@ class FrontEnd
       document.getElementById("profile-userID").innerHTML = "userID: " + data.id;
       document.getElementById("profile-pic").src = data.images[0].url;
     }
-    
-      
   }
 
 }

@@ -5,6 +5,8 @@
     width: 50%;
     float: right;
     margin-right: 100px;
+    height: 400px;
+    overflow: scroll;
 }
 .row
 {
@@ -60,4 +62,17 @@
   top: 40px;
   padding: 10px;
   position:relative;
+}
+button{
+  display: block;
+  width :75%;
+  height: 75px;
+  
+}
+#header
+{
+  font-family: Tahoma;
+  font-size: 50px;
+  text-align: center;
+  color: red;
 }
