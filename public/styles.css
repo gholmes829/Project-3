@@ -80,6 +80,43 @@ button{
   height: 8vh;
   background-color: #4CAF50;
 }
+
+.add-song-button{
+  position:absolute;
+  left:52%;
+  top: 52%;
+  width:22%;
+}
+
+.remove-song-button{
+  position:absolute;
+  left:77%;
+  top: 52%;
+  width:22%;
+}
+
+.finish-button{
+  position:absolute;
+  left:52%;
+  top: 85%;
+  width:47%;
+}
+
+.generate-remove-button{
+  position:absolute;
+  left:52%;
+  top: 73%;
+  width:47%;
+}
+
+.slider{
+  position:absolute;
+  top:67%;
+  left:52%;
+  width: 47%;
+  overflow:hidden;
+}
+
 #header
 {
   font-family: Tahoma;
