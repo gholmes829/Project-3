@@ -99,6 +99,10 @@ class FrontEnd
         }
       );
     }
+    /**
+    * This function updates the current users information on screen.
+    * @param {json} data A json file containing information about the users profile
+    */
     function updateUser(data)
     {
       userID = data.id;
@@ -111,6 +115,9 @@ class FrontEnd
 
 }
 
+/**
+* This function takes the current selected playlist and creates a clone of it on spotify
+*/
 function finishPlaylist()
 {
   var finalPlaylist = [];
@@ -125,6 +132,7 @@ function finishPlaylist()
       spotifyApi.addTracksToPlaylist(data.id,finalPlaylist,null).then(
         function(newPlaylist){
           console.log(newPlaylist);
+          location.reload();
         },
         function(err){
           console.log(err);
