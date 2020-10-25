@@ -15,7 +15,10 @@ else {
 
 document.addEventListener("DOMContentLoaded", function(event) {
     const list = new FrontEnd("#container")
+    document.getElementById("remove_song").addEventListener("click", function() {
+      list.removeSong();
   });
+});
 
   var userID;
 
@@ -84,11 +87,14 @@ class FrontEnd
           for (let i = 0; i<data.items.length;i++)
           {
               var newButton = document.createElement("button");
+              newButton.setAttribute("id", i);
               var node = document.createTextNode(data.items[i].track.name);
+              var x = document.createElement("INPUT");
+              x.setAttribute("type", "checkbox");
 
               newButton.appendChild(node);
               var element = document.getElementById("trackList");
-              newButton.onclick = function(){console.log(data)};
+              newButton.onclick = function(){selectSong(i)};
               element.appendChild(newButton);
 
           }
@@ -98,6 +104,19 @@ class FrontEnd
           console.error(err);
         }
       );
+    }
+    function selectSong(i)
+    {
+      var element = document.getElementById(i);
+      if (element.checked == true) 
+      {
+        element.checked = false;
+      }
+      else
+      {
+        console.log("passed");
+        element.checked = true;
+      }
     }
     /**
     * This function updates the current users information on screen.
@@ -112,6 +131,20 @@ class FrontEnd
     }
 
   }
+  removeSong()
+  {
+    
+    for (let i =0; i<selectedPlaylist.items.length;i++)
+    {
+      var element = document.getElementById(i);
+      if(element.checked == true)
+      {
+        delete selectedPlaylist.items[i];
+        selectedPlaylist.items.length--;
+      }
+    }
+    console.log(selectedPlaylist);
+    }
 
 }
 
