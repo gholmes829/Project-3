@@ -4,12 +4,12 @@ let html_access_token = document.getElementById("access");
 if(html_access_token.innerHTML.length > 0)
 {
   spotifyApi.setAccessToken(html_access_token.innerHTML);
-  console.log(spotifyApi.getAccessToken());
+  console.log("cashe loaded");
 }
 else {
   html_access_token.addEventListener('change', (event) => {
     spotifyApi.setAccessToken(html_access_token.innerHTML);
-    console.log(spotifyApi.getAccessToken());
+    console.log("event loaded");
   });
 }
 
@@ -17,9 +17,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const list = new FrontEnd("#container")
   });
 
+  var userID;
 
+  var selectedPlaylist;
+  var selected_playlist_name;
 class FrontEnd
 {
+
   constructor(list)
   {
     this.list
@@ -34,7 +38,7 @@ class FrontEnd
     spotifyApi.getMe(null).then(
       function (data) {
         updateUser(data);
-        callGetUserPlayerList(data)
+        callGetUserPlayerList(data);
       },
       function (err) {
         console.error(err);
@@ -49,7 +53,6 @@ class FrontEnd
       spotifyApi.getUserPlaylists(oldData.id).then(
         function (data) {
           document.getElementById("header").innerHTML = "Choose a Playlist to be Edited";
-
           for (let i = 0; i<data.items.length;i++)
           {
               let newButton = document.createElement("button");
@@ -57,9 +60,8 @@ class FrontEnd
               newButton.appendChild(node);
               var element = document.getElementById("playList");
               newButton.onclick = function(){showTracks(data.items[i].id);
-              console.log("clicked")};
+              selected_playlist_name = data.items[i].name;};
               element.appendChild(newButton);
-
           }
         },
         function (err) {
@@ -74,8 +76,10 @@ class FrontEnd
     function showTracks(oldDataId){
       document.getElementById("playList").style.display = "none";
       console.log(oldDataId);
+
       spotifyApi.getPlaylistTracks(oldDataId).then(
         function (data) {
+          selectedPlaylist = data;
           document.getElementById("header").innerHTML = "Choose a Track to play";
           for (let i = 0; i<data.items.length;i++)
           {
@@ -97,10 +101,37 @@ class FrontEnd
     }
     function updateUser(data)
     {
+      userID = data.id;
       document.getElementById("profile-userName").innerHTML = "Username: " + data.display_name;
       document.getElementById("profile-userID").innerHTML = ("userID: " + data.id);
       document.getElementById("profile-pic").src = data.images[0].url;
     }
+
   }
+
+}
+
+function finishPlaylist()
+{
+  var finalPlaylist = [];
+  console.log(selected_playlist_name);
+  for(i = 0; i < selectedPlaylist.items.length;i++)
+  {
+    finalPlaylist[i] = (selectedPlaylist.items[i].track.uri).toString();
+  }
+
+  spotifyApi.createPlaylist(userID,{name:"clone of " + selected_playlist_name}).then(
+    function (data) {
+      spotifyApi.addTracksToPlaylist(data.id,finalPlaylist,null).then(
+        function(newPlaylist){
+          console.log(newPlaylist);
+        },
+        function(err){
+          console.log(err);
+        });
+    },
+    function (err) {
+      console.error(err);
+    });
 
 }
