@@ -14,16 +14,14 @@ else {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    const list = new FrontEnd("#container");
+    const list = new FrontEnd("#container")
 
 });
 
   var userID;
-
+  var selectedSong;
   var selectedPlaylist;
   var selected_playlist_name;
-  var selectedSong;
-  var playListLength;
 class FrontEnd
 {
 
@@ -83,17 +81,15 @@ class FrontEnd
       spotifyApi.getPlaylistTracks(oldDataId).then(
         function (data) {
           selectedPlaylist = data;
-          playListLength = data.items.length;
           document.getElementById("header").innerHTML = "Choose a Track to play";
           for (let i = 0; i<data.items.length;i++)
           {
               var newButton = document.createElement("button");
-
               var node = document.createTextNode(data.items[i].track.name);
 
               newButton.appendChild(node);
               var element = document.getElementById("trackList");
-              newButton.onclick = function(){selectedSong = data.items[i].track.name};
+              newButton.onclick = function(){selectedSong =i};
               element.appendChild(newButton);
 
           }
@@ -104,7 +100,6 @@ class FrontEnd
         }
       );
     }
-
     /**
     * This function updates the current users information on screen.
     * @param {json} data A json file containing information about the users profile
@@ -119,59 +114,9 @@ class FrontEnd
 
   }
 
-}
-
-function removeSong()
-{
-  console.log(selectedPlaylist);
-  var element = document.getElementById("trackList");
-  var flag = true;
-  var tempPlaylist = [];
-  console.log(selectedPlaylist.items);
-  for(x=0;x<selectedPlaylist.items.length;x++)
-  {
-    element.removeChild(element.lastChild);
-    if(selectedSong !== selectedPlaylist.items[x].track.name)
-    {
-      tempPlaylist.push(selectedPlaylist.items[x]);
-    }
-    else if (flag)
-    {
-      console.log("flag at " + x);
-      console.log(selectedPlaylist.items[x])
-      flag = false;
-    }
-    else {
-      tempPlaylist.push(selectedPlaylist.items[x]);
-    }
-
-    if(x == selectedPlaylist.items.length-1)
-    {
-      delete selectedPlaylist.items;
-      selectedPlaylist.items = tempPlaylist;
-      selectedSong = "";
-    }
-  }
-  selectedPlaylist.items.length = selectedPlaylist.items.length-1;
-  addSongsBack();
-
 
 }
 
-function addSongsBack()
-{
-
-  for(i=0;i<selectedPlaylist.items.length;i++)
-  {
-      var newButton = document.createElement("button");
-      var node = document.createTextNode(selectedPlaylist.items[i].track.name);
-      newButton.appendChild(node);
-      var element = document.getElementById("trackList");
-      newButton.onclick = function(){selectedSong = selectedPlaylist.items[i].track.name;};
-      element.appendChild(newButton);
-  }
-
-}
 /**
 * This function takes the current selected playlist and creates a clone of it on spotify
 */
@@ -179,7 +124,7 @@ function finishPlaylist()
 {
   var finalPlaylist = [];
   console.log(selected_playlist_name);
-  for(let i = 0; i < selectedPlaylist.items.length;i++)
+  for(i = 0; i < selectedPlaylist.items.length;i++)
   {
     finalPlaylist[i] = (selectedPlaylist.items[i].track.uri).toString();
   }
@@ -198,9 +143,72 @@ function finishPlaylist()
     function (err) {
       console.error(err);
     });
+  }
+function removeSong()
+  {
+
+   /* for (let i =0; i<selectedPlaylist.items.length;i++)
+    {
+      var element = document.getElementById(i);
+      if(element.checked == true)
+      {
+        delete selectedPlaylist.items[i];
+        selectedPlaylist.items.length--;
+      }
+    }
+    console.log(selectedPlaylist);
+
+    }*/
+    console.log(selectedSong);
+    let temp = 0;
+    let offset = false;
+    for(let i=0;i<selectedPlaylist.items.length;i++)
+    {
+      if (i != selectedSong && !offset)
+      {
+        console.log("Adding selected song " + i);
+        var newButton = document.createElement("button");
+        var node = document.createTextNode(selectedPlaylist.items[i].track.name);
+        newButton.appendChild(node);
+        var element = document.getElementById("trackList");
+        newButton.onclick = function(){selectedSong = i;
+        };
+        element.appendChild(newButton);
+      }
+      else if (i==selectedSong){
+        console.log("Splice");
+        temp = i;
+        offset = true;
+        //delete selectedPlaylist.items[i];
+        //selectedPlaylist.items.length = selectedPlaylist.items.length-1;
+      }
+      else if(offset)
+      {
+        console.log("Adding selected song " + i);
+        var newButton = document.createElement("button");
+        var node = document.createTextNode(selectedPlaylist.items[i].track.name);
+        newButton.appendChild(node);
+        var element = document.getElementById("trackList");
+        newButton.onclick = function(){selectedSong = i-1;
+        };
+        element.appendChild(newButton);
+        console.log("Incorrect");
+      }
+    }
+    selectedPlaylist.items.splice(temp,1);
+    for(let x=0;x<selectedPlaylist.items.length+1;x++)
+    {
+      console.log("delete " + x);
+      var element = document.getElementById("trackList");
+      element.removeChild(element.childNodes[0]);
+
+    }
+    console.log(selectedSong);
+    console.log(selectedPlaylist.items.length);
 }
 
-/**
+
+
 function removeMisMatched()
 {
 
@@ -228,4 +236,3 @@ function removeMisMatched()
   }
   console.log(selectedPlaylist);
 }
-*/
