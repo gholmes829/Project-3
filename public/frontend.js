@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var selectedPlaylist;
   var selected_playlist_name;
+  var deleteQueue = [];
 class FrontEnd
 {
 
@@ -85,6 +86,7 @@ class FrontEnd
           selectedPlaylist = data;
           console.log(selectedPlaylist);
           document.getElementById("header").innerHTML = "Choose a Track to play";
+          deleteQueue.length = data.items.length;
           for (let i = 0; i<data.items.length;i++)
           {
               var newButton = document.createElement("button");
@@ -93,9 +95,13 @@ class FrontEnd
               var x = document.createElement("INPUT");
               x.setAttribute("type", "checkbox");
 
+              newButton.id = i;
               newButton.appendChild(node);
               var element = document.getElementById("trackList");
-              newButton.onclick = function(){selectSong(i)};
+              newButton.onclick = function(){
+                selectSong(i);
+                deleteQueue[i] = i;
+              };
               element.appendChild(newButton);
 
           }
@@ -109,7 +115,7 @@ class FrontEnd
     function selectSong(i)
     {
       var element = document.getElementById(i);
-      if (element.checked == true) 
+      if (element.checked == true)
       {
         element.checked = false;
       }
@@ -134,7 +140,7 @@ class FrontEnd
   }
   removeSong()
   {
-    
+
     for (let i =0; i<selectedPlaylist.items.length;i++)
     {
       var element = document.getElementById(i);
@@ -147,6 +153,28 @@ class FrontEnd
     console.log(selectedPlaylist);
     }
 
+}
+
+function deleteTracks()
+{
+  newPlaylist = [];
+
+  //for every index in selectedPlaylist, compare with deleteQueue to filter out indexes of deleted songs
+  for(i = 0; i < deleteQueue.length; i++)
+  {
+        if(deleteQueue[i] == null)
+        {
+          newPlaylist.push(selectedPlaylist.items[i]);
+          console.log(selectedPlaylist.items[i].track.name);
+          console.log(newPlaylist);
+        }
+  }
+
+
+  selectedPlaylist.total = newPlaylist.length;
+  //reset deleteQueue to prevent replacement elements from being removed
+  deleteQueue = [];
+  selectedPlaylist.items = newPlaylist;
 }
 
 /**
