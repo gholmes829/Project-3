@@ -14,16 +14,16 @@ else {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    const list = new FrontEnd("#container")
-    document.getElementById("remove_song").addEventListener("click", function() {
-      list.removeSong();
-  });
+    const list = new FrontEnd("#container");
+
 });
 
   var userID;
 
   var selectedPlaylist;
   var selected_playlist_name;
+  var selectedSong;
+  var playListLength;
 class FrontEnd
 {
 
@@ -83,19 +83,17 @@ class FrontEnd
       spotifyApi.getPlaylistTracks(oldDataId).then(
         function (data) {
           selectedPlaylist = data;
-          console.log(selectedPlaylist);
+          playListLength = data.items.length;
           document.getElementById("header").innerHTML = "Choose a Track to play";
           for (let i = 0; i<data.items.length;i++)
           {
               var newButton = document.createElement("button");
-              newButton.setAttribute("id", i);
+
               var node = document.createTextNode(data.items[i].track.name);
-              var x = document.createElement("INPUT");
-              x.setAttribute("type", "checkbox");
 
               newButton.appendChild(node);
               var element = document.getElementById("trackList");
-              newButton.onclick = function(){selectSong(i)};
+              newButton.onclick = function(){selectedSong = data.items[i].track.name};
               element.appendChild(newButton);
 
           }
@@ -106,19 +104,7 @@ class FrontEnd
         }
       );
     }
-    function selectSong(i)
-    {
-      var element = document.getElementById(i);
-      if (element.checked == true) 
-      {
-        element.checked = false;
-      }
-      else
-      {
-        console.log("passed");
-        element.checked = true;
-      }
-    }
+
     /**
     * This function updates the current users information on screen.
     * @param {json} data A json file containing information about the users profile
@@ -132,23 +118,60 @@ class FrontEnd
     }
 
   }
-  removeSong()
-  {
-    
-    for (let i =0; i<selectedPlaylist.items.length;i++)
-    {
-      var element = document.getElementById(i);
-      if(element.checked == true)
-      {
-        delete selectedPlaylist.items[i];
-        selectedPlaylist.items.length--;
-      }
-    }
-    console.log(selectedPlaylist);
-    }
 
 }
 
+function removeSong()
+{
+  console.log(selectedPlaylist);
+  var element = document.getElementById("trackList");
+  var flag = true;
+  var tempPlaylist = [];
+  console.log(selectedPlaylist.items);
+  for(x=0;x<selectedPlaylist.items.length;x++)
+  {
+    element.removeChild(element.lastChild);
+    if(selectedSong !== selectedPlaylist.items[x].track.name)
+    {
+      tempPlaylist.push(selectedPlaylist.items[x]);
+    }
+    else if (flag)
+    {
+      console.log("flag at " + x);
+      console.log(selectedPlaylist.items[x])
+      flag = false;
+    }
+    else {
+      tempPlaylist.push(selectedPlaylist.items[x]);
+    }
+
+    if(x == selectedPlaylist.items.length-1)
+    {
+      delete selectedPlaylist.items;
+      selectedPlaylist.items = tempPlaylist;
+      selectedSong = "";
+    }
+  }
+  selectedPlaylist.items.length = selectedPlaylist.items.length-1;
+  addSongsBack();
+
+
+}
+
+function addSongsBack()
+{
+
+  for(i=0;i<selectedPlaylist.items.length;i++)
+  {
+      var newButton = document.createElement("button");
+      var node = document.createTextNode(selectedPlaylist.items[i].track.name);
+      newButton.appendChild(node);
+      var element = document.getElementById("trackList");
+      newButton.onclick = function(){selectedSong = selectedPlaylist.items[i].track.name;};
+      element.appendChild(newButton);
+  }
+
+}
 /**
 * This function takes the current selected playlist and creates a clone of it on spotify
 */
@@ -156,7 +179,7 @@ function finishPlaylist()
 {
   var finalPlaylist = [];
   console.log(selected_playlist_name);
-  for(i = 0; i < selectedPlaylist.items.length;i++)
+  for(let i = 0; i < selectedPlaylist.items.length;i++)
   {
     finalPlaylist[i] = (selectedPlaylist.items[i].track.uri).toString();
   }
